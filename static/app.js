@@ -15,23 +15,33 @@
 */
 var serverPath = '//hangoutdnd.appspot.com/';
 
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 600;
+canvas.height = 600;
+
+function drawGridlines() {
+  ctx.beginPath();
+  for (i=20; i<=580; i+=20)  
+    ctx.moveTo(i, 0);
+    ctx.lineTo(i, 600);
+    ctx.stroke();
+}
+
+
 // The functions triggered by the buttons on the Hangout App
 function countButtonClick() {
   // Note that if you click the button several times in succession,
   // if the state update hasn't gone through, it will submit the same
   // delta again.  The hangout data state only remembers the most-recent
   // update.
-  alert('Button clicked.');
-  var value = 0;
-  var count = gapi.hangout.data.getState()['count'];
-  if (count) {
-    value = parseInt(count);
-  }
+    $(document).clear();
+    canvas.style.display="block";
+    drawGridlines();
 
-  console.log('New count is ' + value);
   // Send update to shared state.
   // NOTE:  Only ever send strings as values in the key-value pairs
-  gapi.hangout.data.submitDelta({'count': '' + (value + 100)});
+  gapi.hangout.data.submitDelta({'state': 'Started'});
 }
 
 function resetButtonClick() {
@@ -106,3 +116,26 @@ function init() {
 }
 
 gadgets.util.registerOnLoadHandler(init);
+
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+canvas.width = 600;
+canvas.height = 600;
+
+function drawGridlines() {
+  context.beginPath();
+  for (i=20; i<=580; i+=20)  
+    context.moveTo(i, 0);
+    context.lineTo(i, 600);
+    context.stroke();
+}
+
+
+
+/* var jCanvas = document.getElementById("mycanvas");
+jCanvas.prop('width', jCanvas.width());
+jCanvas.prop('height', jCanvas.height()); */
+
+drawGridlines();
+

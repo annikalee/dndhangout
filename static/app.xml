@@ -28,6 +28,13 @@
      Tip: You can load it from a local web server such as
      http://localhost/app.js for faster single user development -->
 <script src="//hangoutdnd.appspot.com/static/app.js"></script>
+<script src="//hangoutdnd.appspot.com/static/jquery-1.10.2.min.js"></script>
+
+
+<canvas id="myCanvas" width="600" height="600"
+        style="border:1px solid #000000; display: none;">
+    No canvas available!
+</canvas>
 
 <h1>Welcome to the Dungeons and Dragons Hangout!</h1>
 <div style="float: left; padding: 0px 20px">
