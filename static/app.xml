@@ -36,12 +36,14 @@
     No canvas available!
 </canvas>
 
-<h1>Welcome to the Dungeons and Dragons Hangout!</h1>
-<div style="float: left; padding: 0px 20px">
-  <p>Ready to play?</p>
+<div id="Welcome">
+  <h1>Welcome to the Dungeons and Dragons Hangout!</h1>
+  <div style="float: left; padding: 0px 20px">
+    <p>Ready to play?</p>
 
-  <input type=button value="Click Me!" id="Play!"
-      onClick="countButtonClick()"/>
+    <input type=button value="Click Me!" id="Play!"
+        onClick="countButtonClick()"/>
+  </div>
 </div>
 
 ]]></Content>

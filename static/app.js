@@ -35,9 +35,8 @@ function countButtonClick() {
   // if the state update hasn't gone through, it will submit the same
   // delta again.  The hangout data state only remembers the most-recent
   // update.
-    $(document).clear();
-    canvas.style.display="block";
-    drawGridlines();
+  var menu = document.querySelector('#Welcome');
+  menu.innerHTML="";
 
   // Send update to shared state.
   // NOTE:  Only ever send strings as values in the key-value pairs
@@ -123,19 +122,4 @@ var ctx = canvas.getContext("2d");
 canvas.width = 600;
 canvas.height = 600;
 
-function drawGridlines() {
-  context.beginPath();
-  for (i=20; i<=580; i+=20)  
-    context.moveTo(i, 0);
-    context.lineTo(i, 600);
-    context.stroke();
-}
-
-
-
-/* var jCanvas = document.getElementById("mycanvas");
-jCanvas.prop('width', jCanvas.width());
-jCanvas.prop('height', jCanvas.height()); */
-
-drawGridlines();
 
