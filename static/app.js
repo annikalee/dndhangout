@@ -121,7 +121,7 @@ function rollDice(numDice, name, is100) {
     number = number * 10; 
   }
   var numString = name + ' rolled a ' + number + '!'; 
-  console.log(numString); 
+  addToConsole(numString); 
 }
 
 // The functions triggered by the buttons on the Hangout App
