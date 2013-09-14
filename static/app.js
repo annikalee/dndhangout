@@ -36,45 +36,57 @@ function drawGridlines() {
 var d4 = new Image(); 
 d4.src = "//hangoutdnd.appspot.com/static/images/d4.jpg"; 
 d4.onload = function() {
-      ctx.drawImage(d4, 550, 0, 30, 30);
+      ctx.drawImage(d4, 550, 0, 40, 40);
 }
 
 var d6 = new Image(); 
 d6.src = "//hangoutdnd.appspot.com/static/images/d6.jpg"; 
 d6.onload = function() {
-      ctx.drawImage(d6, 550, 35, 30, 30);
+      ctx.drawImage(d6, 550, 50, 40, 40);
 }
 
 var d8 = new Image(); 
 d8.src = "//hangoutdnd.appspot.com/static/images/d8.jpg"; 
 d8.onload = function() {
-      ctx.drawImage(d8, 550, 70, 30, 30);
+      ctx.drawImage(d8, 550, 100, 40, 40);
 }
 
 var d10 = new Image(); 
 d10.src = "//hangoutdnd.appspot.com/static/images/d10.jpg"; 
 d10.onload = function() {
-      ctx.drawImage(d10, 550, 105, 30, 30);
+      ctx.drawImage(d10, 550, 150, 40, 40);
 }
 
 var d12 = new Image(); 
 d12.src = "//hangoutdnd.appspot.com/static/images/d12.jpg"; 
 d12.onload = function() {
-      ctx.drawImage(d12, 550, 140, 30, 30);
+      ctx.drawImage(d12, 550, 200, 40, 40);
 }
 
 var d20 = new Image(); 
 d20.src = "//hangoutdnd.appspot.com/static/images/d20.jpg"; 
 d20.onload = function() {
-      ctx.drawImage(d20, 550, 175, 30, 30);
+      ctx.drawImage(d20, 550, 250, 40, 40);
 }
 
 var d100 = new Image(); 
 d100.src = "//hangoutdnd.appspot.com/static/images/d100.jpg"; 
 d100.onload = function() {
-      ctx.drawImage(d100, 550, 210, 30, 30);
+      ctx.drawImage(d100, 550, 300, 40, 40);
 }
 
+/* function onMouseDown(event) {
+    var x = event.pageX - canvas.offsetLeft; 
+    var y = event.pageY - canvas.offsetTop; 
+    var delta = 25; 
+    var smallestX = x - delta; 
+    var greatestX = x + delta; 
+    var smallestY = y - delta; 
+    var greatestY = y + delta; 
+    if (smallestX <= 550 && 550 <= greatestX) {
+       console.log('Within x');
+    }
+}*/
 
 // The functions triggered by the buttons on the Hangout App
 function countButtonClick() {
