@@ -17,15 +17,62 @@ var serverPath = '//hangoutdnd.appspot.com/';
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 600;
-canvas.height = 600;
+canvas.width = 510;
+canvas.height = 510;
 
 function drawGridlines() {
   ctx.beginPath();
-  for (i=20; i<=580; i+=20)  
+  for (i=30; i<=510; i+=30) {
     ctx.moveTo(i, 0);
-    ctx.lineTo(i, 600);
-    ctx.stroke();
+    ctx.lineTo(i, 510);
+  }
+  for (i=30; i<=510; i+=30) {
+    ctx.moveTo(0, i);
+    ctx.lineTo(510, i);
+  }
+  ctx.stroke();
+}
+
+var d4 = new Image(); 
+d4.src = "//hangoutdnd.appspot.com/static/images/d4.jpg"; 
+d4.onload = function() {
+      ctx.drawImage(d4, 550, 0, 30, 30);
+}
+
+var d6 = new Image(); 
+d6.src = "//hangoutdnd.appspot.com/static/images/d6.jpg"; 
+d6.onload = function() {
+      ctx.drawImage(d6, 550, 35, 30, 30);
+}
+
+var d8 = new Image(); 
+d8.src = "//hangoutdnd.appspot.com/static/images/d8.jpg"; 
+d8.onload = function() {
+      ctx.drawImage(d8, 550, 70, 30, 30);
+}
+
+var d10 = new Image(); 
+d10.src = "//hangoutdnd.appspot.com/static/images/d10.jpg"; 
+d10.onload = function() {
+      ctx.drawImage(d10, 550, 105, 30, 30);
+}
+
+var d12 = new Image(); 
+d12.src = "//hangoutdnd.appspot.com/static/images/d12.jpg"; 
+d12.onload = function() {
+      ctx.drawImage(d12, 550, 140, 30, 30);
+}
+
+var d20 = new Image(); 
+d20.src = "//hangoutdnd.appspot.com/static/images/d20.jpg"; 
+d20.onload = function() {
+      ctx.drawImage(d20, 550, 175, 30, 30);
+}
+
+var d100 = new Image(); 
+d100.src = "//hangoutdnd.appspot.com/static/images/d100.jpg"; 
+d100.onload = function() {
+      ctx.drawImage(d100, 550, 210, 30, 30);
 }
 
 
@@ -40,6 +87,7 @@ function countButtonClick() {
 
   canvas.style.display="block";
   drawGridlines();
+
 
   // Send update to shared state.
   // NOTE:  Only ever send strings as values in the key-value pairs
