@@ -86,26 +86,42 @@ function onMouseDown(event) {
     if ((smallestX <= 570) && (570 <= greatestX)) {
         if ((smallestY <= 20) && (20 <= greatestY)) {
             console.log("Within D4");
+            rollDice(4, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 70) && (70 <= greatestY)) {
             console.log("Within D6");
+            rollDice(6, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 120) && (120 <= greatestY)) {
             console.log("Within D8");
+            rollDice(8, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 170) && (170 <= greatestY)) {
             console.log("Within D10");
+            rollDice(10, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 220) && (220 <= greatestY)) {
             console.log("Within D12");
+            rollDice(12, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 270) && (270 <= greatestY)) {
             console.log("Within D20");
+            rollDice(20, gapi.hangout.getLocalParticipant().person.displayName, false);
         }
         if ((smallestY <= 320) && (320 <= greatestY)) {
             console.log("Within D100");
+            rollDice(10, gapi.hangout.getLocalParticipant().person.displayName, true);
         }
     }
+}
+
+function rollDice(numDice, name, is100) {
+  var number = Math.floor(Math.random()*numDice) + 1; 
+  if (is100) {
+    number = number * 10; 
+  }
+  var numString = name + ' rolled a ' + number + '!'; 
+  console.log(numString); 
 }
 
 // The functions triggered by the buttons on the Hangout App
