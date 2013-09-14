@@ -134,9 +134,9 @@ function countButtonClick() {
   menu.innerHTML="";
 
   canvas.style.display="block";
+  $(".game-console").style.display="block";
   drawGridlines();
   canvas.addEventListener('mousedown', onMouseDown, false);
-
 
   // Send update to shared state.
   // NOTE:  Only ever send strings as values in the key-value pairs
@@ -181,6 +181,14 @@ function updateStateUi(state) {
   }
 }
 
+
+/* Function which takes in a string, and adds it to the game console */
+function addToConsole(thing) {
+  var item= $("<p/>").addClass("console-item").html(thing);
+  $(".game-console").append(item);
+}
+
+
 function updateParticipantsUi(participants) {
   console.log('Participants count: ' + participants.length);
   var participantsListElement = document.getElementById('participants');
@@ -221,5 +229,3 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 600;
 canvas.height = 600;
-
-

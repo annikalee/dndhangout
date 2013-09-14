@@ -36,6 +36,9 @@
     No canvas available!
 </canvas>
 
+<div class="game-console" style="display: none;">
+</div>
+
 <div id="Welcome">
   <h1>Welcome to the Dungeons and Dragons Hangout!</h1>
   <div style="float: left; padding: 0px 20px">
