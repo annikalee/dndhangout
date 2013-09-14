@@ -75,18 +75,38 @@ d100.onload = function() {
       ctx.drawImage(d100, 550, 300, 40, 40);
 }
 
-/* function onMouseDown(event) {
+function onMouseDown(event) {
     var x = event.pageX - canvas.offsetLeft; 
     var y = event.pageY - canvas.offsetTop; 
-    var delta = 25; 
+    var delta = 20; 
     var smallestX = x - delta; 
     var greatestX = x + delta; 
     var smallestY = y - delta; 
     var greatestY = y + delta; 
-    if (smallestX <= 550 && 550 <= greatestX) {
-       console.log('Within x');
+    if ((smallestX <= 570) && (570 <= greatestX)) {
+        if ((smallestY <= 20) && (20 <= greatestY)) {
+            console.log("Within D4");
+        }
+        if ((smallestY <= 70) && (70 <= greatestY)) {
+            console.log("Within D6");
+        }
+        if ((smallestY <= 120) && (120 <= greatestY)) {
+            console.log("Within D8");
+        }
+        if ((smallestY <= 170) && (170 <= greatestY)) {
+            console.log("Within D10");
+        }
+        if ((smallestY <= 220) && (220 <= greatestY)) {
+            console.log("Within D12");
+        }
+        if ((smallestY <= 270) && (270 <= greatestY)) {
+            console.log("Within D20");
+        }
+        if ((smallestY <= 320) && (320 <= greatestY)) {
+            console.log("Within D100");
+        }
     }
-}*/
+}
 
 // The functions triggered by the buttons on the Hangout App
 function countButtonClick() {
@@ -99,6 +119,7 @@ function countButtonClick() {
 
   canvas.style.display="block";
   drawGridlines();
+  canvas.addEventListener('mousedown', onMouseDown, false);
 
 
   // Send update to shared state.
