@@ -38,6 +38,9 @@ function countButtonClick() {
   var menu = document.querySelector('#Welcome');
   menu.innerHTML="";
 
+  canvas.style.display="block";
+  drawGridlines();
+
   // Send update to shared state.
   // NOTE:  Only ever send strings as values in the key-value pairs
   gapi.hangout.data.submitDelta({'state': 'Started'});
