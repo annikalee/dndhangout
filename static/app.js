@@ -19,18 +19,28 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 //canvas.width = 510;
 //canvas.height = 510;
+var width = 510;
+var height = 510;
+var cellSize = 30;
 
 function drawGridlines() {
-  ctx.beginPath();
-  for (i=30; i<=510; i+=30) {
-    ctx.moveTo(i, 0);
-    ctx.lineTo(i, 510);
-  }
-  for (i=30; i<=510; i+=30) {
-    ctx.moveTo(0, i);
-    ctx.lineTo(510, i);
-  }
-  ctx.stroke();
+    ctx.beginPath();
+    for (i=cellSize; i<=width; i+=cellSize) {
+      ctx.moveTo(i, 0);
+      ctx.lineTo(i, 510);
+    }
+    for (i=cellSize; i<=height; i+=cellSize) {
+      ctx.moveTo(0, i);
+      ctx.lineTo(510, i);
+    }
+    ctx.stroke();
+}
+
+// Uses knowledge of height/width and cellSize
+// If (1,0), that means second row, first column. So, (30, 0)
+function getPositionFromGrid(x, y)  {
+    var x_coord = x * cellSize;
+    var y_coord = y * cellSize;
 }
 
 var d4 = new Image(); 
