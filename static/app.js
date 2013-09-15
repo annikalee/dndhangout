@@ -188,7 +188,7 @@ function countButtonClick() {
   gameGrid.grid[10][10].terrain="ice";
   gameGrid.draw();
 
-  allTokens = JSON.parse(tokens);
+  allTokens = JSON.parse(gapi.hangout.data.getState()['tokens']));
   var numTokens = allTokens.length;
   for (var i=0; i < numTokens; i++)
     allTokens[i].draw();
