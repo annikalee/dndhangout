@@ -11,12 +11,13 @@ var token = function(color, type, name, x, y) {
 		}
 		else {
 			gameGrid.removeToken(x, y); 
-			currentTokens.removeToken(this);
+			var tokensArray = JSON.parse(gapi.hangout.data.getState()['tokens']);
+			tokensArray.removeToken(this);
 			gameGrid.addToken(a, b); 
 			this.x = a; 
 			this.y = b;
-			currentTokens.addToken(this);
-			// Redraw 
+			tokensArray.addToken(this);
+			gapi.hangout.data.submitDelta('tokens', tokensArray.toString());
 		}
 
 	}

@@ -148,7 +148,19 @@ function onMouseDown(event) {
     }
 }
 
+function initPlayerTokens(tokensArray, playerArray) {
+    var colors = ['darkblue', 'darkpurple', 'green', 'lightblue', 'lightpurple', 'red'];
+    var y = 0; 
+    for (i = 0; i < playerArray.length; i++) {
+      var player = new token(colors[i%6], 'Player', playerArray.person.displayName, 0, y);
+      tokensArray.addToken(player);
+      y += cellSize; 
+    }
+    gapi.hangout.data.setValue('tokens', tokensArray.toString());
+}
+
 function countButtonClick() {
+  gapi.hangout.data.setValue('game-console', 'Previous Rolls:');
   var menu = document.querySelector('#Welcome');
   menu.innerHTML="";
 
@@ -156,6 +168,8 @@ function countButtonClick() {
   var gameconsole = document.querySelector(".game-console");
   gameconsole.style.display="block";
   drawGridlines();
+  var tokens = new currentTokens(); 
+  initPlayerTokens(tokens, gapi.hangout.getEnabledParticipants());
   var gameGrid = new grid(17, 17);
   gameGrid.grid[10][10].terrain="ice";
   gameGrid.draw();
@@ -190,8 +204,6 @@ function init() {
   var apiReady = function(eventObj) {
     if (eventObj.isApiReady) {
       console.log('API is ready');
-
-      gapi.hangout.data.setValue('game-console', 'Previous Rolls:');
 
       gapi.hangout.data.onStateChanged.add(function(eventObj) {
         updateStateUi(eventObj.state);
