@@ -14,7 +14,7 @@ var token = function(color, type, name, x, y) {
 			gameGrid.addToken(a, b); 
 			this.x = a; 
 			this.y = b;
-			// Redraw 
+			this.draw();
 		}
 
 	}

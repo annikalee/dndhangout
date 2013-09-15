@@ -159,6 +159,9 @@ function countButtonClick() {
   var gameGrid = new grid(17, 17);
   gameGrid.grid[10][10].terrain="ice";
   gameGrid.draw();
+
+  t = new token('green', player, "Hi", 4, 5);
+  t.draw();
   canvas.addEventListener('mousedown', onMouseDown, false);
 }
 
