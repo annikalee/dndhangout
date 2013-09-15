@@ -109,7 +109,7 @@ function rollDice(numDice, name, is100) {
 }
 
 
-function render()   {
+function render(gameGrid)   {
     // Clear, then draw: Gridlines, game grid, and tokens
     var allTokens = JSON.parse(gapi.hangout.data.getState()['tokens']);
     ctx.clearRect(0, 0, width, height);
@@ -166,32 +166,45 @@ function initPlayerTokens(tokensArray, playerArray) {
     var colors = ['darkblue', 'darkpurple', 'green', 'lightblue', 'lightpurple', 'red'];
     var y = 0; 
     for (i = 0; i < playerArray.length; i++) {
-      var player = new token(colors[i%6], 'Player', playerArray.person.displayName, 0, y);
+      var player = new token(colors[i%6], 'Player', playerArray[i].person.displayName, 0, y);
       tokensArray.addToken(player);
       y += cellSize; 
     }
-    gapi.hangout.data.setValue('tokens', tokensArray.toString());
+    gapi.hangout.data.setValue('tokens',JSON.stringify(tokensArray));
+    console.log("Created player tokens");
 }
 
 function countButtonClick() {
   gapi.hangout.data.setValue('game-console', 'Previous Rolls:');
   var menu = document.querySelector('#Welcome');
   menu.innerHTML="";
-
   canvas.style.display="block";
   var gameconsole = document.querySelector(".game-console");
   gameconsole.style.display="block";
   drawGridlines();
-  var tokens = new currentTokens(); 
-  initPlayerTokens(tokens, gapi.hangout.getEnabledParticipants());
   var gameGrid = new grid(17, 17);
-  gameGrid.grid[10][10].terrain="ice";
+  for (i = 5; i < 13; i++) {
+    for (j = 4; j < 16; j++) {
+      if ((i >= 7) && (i < 11) && (j >= 7) && (j < 11)) {
+          gameGrid.grid[i][j].terrain="ice";
+      }
+      else {
+        gameGrid.grid[i][j].terrain="stone";
+      }
+    }
+  }
   gameGrid.draw();
-
-  allTokens = JSON.parse(gapi.hangout.data.getState()['tokens']));
+  var tokens = new currentTokens(); 
+  initPlayerTokens(tokens, gapi.hangout.getParticipants());
+  render(gameGrid); 
+  /*var allTokens = JSON.parse(gapi.hangout.data.getState()['tokens']);
   var numTokens = allTokens.length;
-  for (var i=0; i < numTokens; i++)
+  console.log(numTokens);
+  for (i=0; i < numTokens; i++) {
+    console.log("Drawing " + i + " token");
     allTokens[i].draw();
+  }
+  */
   canvas.addEventListener('mousedown', onMouseDown, false);
 }
 
@@ -223,6 +236,8 @@ function init() {
   var apiReady = function(eventObj) {
     if (eventObj.isApiReady) {
       console.log('API is ready');
+
+      gapi.hangout.data.setValue('game-console', 'Previous Rolls:');
 
       gapi.hangout.data.onStateChanged.add(function(eventObj) {
         updateStateUi(eventObj.state);

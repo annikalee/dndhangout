@@ -29,6 +29,7 @@
      http://localhost/app.js for faster single user development -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="//hangoutdnd.appspot.com/static/token.js"></script>
+<script src="//hangoutdnd.appspot.com/static/grid.js"></script>
 <script src="//hangoutdnd.appspot.com/static/app.js"></script>
 
 <canvas id="myCanvas" width="700" height="700"

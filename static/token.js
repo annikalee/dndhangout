@@ -5,28 +5,28 @@ var token = function(color, type, name, x, y) {
 	this.x = x;
 	this.y = y; 
 	this.url = "//hangoutdnd.appspot.com/static/images/" + color + ".gif";
-	this.moveToken = function(a, b)	{
+	this.moveToken = function(a, b, gameGrid)	{
 		if (gameGrid[a][b].occupied === true) {
 			//Nope message
 		}
 		else {
 			gameGrid.removeToken(x, y); 
-			var tokensArray = JSON.parse(gapi.hangout.data.getState()['tokens']);
 			tokensArray.removeToken(this);
 			gameGrid.addToken(a, b); 
 			this.x = a; 
 			this.y = b;
 			tokensArray.addToken(this);
-			gapi.hangout.data.submitDelta('tokens', tokensArray.toString());
-			render(); 
+			gapi.hangout.data.submitDelta({'tokens': JSON.stringify(tokensArray)});
+			render(gameGrid); 
 		}
 
 	}
 	this.draw = function() {
+		console.log("Drawing Token");
 		var tokenImg = new Image(); 
 		tokenImg.src = this.url; 
 		tokenImg.onload = function() {
-      		ctx.drawImage(tokenImg, this.x, this.y, 30, 30);
+      		ctx.drawImage(tokenImg, this.x*30, this.y*30, 30, 30);
 		}
 	}
 }
@@ -38,16 +38,9 @@ var currentTokens = function() {
 	}
 	this.removeToken = function(token) {
 		for (i = 0; i < this.currentTokens.length; i++) {
-			if this.currentTokens[i] === token {
+			if (this.currentTokens[i] === token) {
 				this.currentTokens.removeByIndex(i);
 			}
 		}
-	}
-	this.toString = function() {
-		var result = "";
-		for (i = 0; i < this.currentTokens.length; i++) {
-			result += JSON.stringify[this.currentTokens[i]];
-		}
-		return result;
 	}
 }
