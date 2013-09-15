@@ -111,13 +111,13 @@ function rollDice(numDice, name, is100) {
 
 function render()   {
     // Clear, then draw: Gridlines, game grid, and tokens
+    var allTokens = JSON.parse(gapi.hangout.data.getState()['tokens']);
     ctx.clearRect(0, 0, width, height);
     drawGridlines();
     gameGrid.draw();
     var numTokens = allTokens.length;
     for (var i=0; i < numTokens; i++)
       allTokens[i].draw();
-
     return;
 }
 

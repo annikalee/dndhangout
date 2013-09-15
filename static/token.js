@@ -18,6 +18,7 @@ var token = function(color, type, name, x, y) {
 			this.y = b;
 			tokensArray.addToken(this);
 			gapi.hangout.data.submitDelta('tokens', tokensArray.toString());
+			render(); 
 		}
 
 	}
