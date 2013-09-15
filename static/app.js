@@ -41,6 +41,7 @@ function drawGridlines() {
 function getPositionFromGrid(x, y)  {
     var x_coord = x * cellSize;
     var y_coord = y * cellSize;
+    return (x_coord, y_coord);
 }
 
 var d4 = new Image(); 
