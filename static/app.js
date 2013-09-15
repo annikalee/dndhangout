@@ -17,8 +17,8 @@ var serverPath = '//hangoutdnd.appspot.com/';
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 510;
-canvas.height = 510;
+//canvas.width = 510;
+//canvas.height = 510;
 
 function drawGridlines() {
   ctx.beginPath();
@@ -75,6 +75,22 @@ d100.onload = function() {
       ctx.drawImage(d100, 550, 300, 40, 40);
 }
 
+/* Function which takes in a string, and adds it to the game console */
+function addToConsole(thing) {
+  console.log(thing);
+  var item= $("<p/>").addClass("console-item").html(thing);
+  $(".game-console").append(item);
+}
+
+function rollDice(numDice, name, is100) {
+  var number = Math.floor(Math.random()*numDice) + 1; 
+  if (is100) {
+    number = number * 10; 
+  }
+  var numString = name + ' rolled a ' + number + '!'; 
+  addToConsole(numString); 
+}
+
 function onMouseDown(event) {
     var x = event.pageX - canvas.offsetLeft; 
     var y = event.pageY - canvas.offsetTop; 
@@ -115,15 +131,6 @@ function onMouseDown(event) {
     }
 }
 
-function rollDice(numDice, name, is100) {
-  var number = Math.floor(Math.random()*numDice) + 1; 
-  if (is100) {
-    number = number * 10; 
-  }
-  var numString = name + ' rolled a ' + number + '!'; 
-  addToConsole(numString); 
-}
-
 // The functions triggered by the buttons on the Hangout App
 function countButtonClick() {
   // Note that if you click the button several times in succession,
@@ -134,7 +141,8 @@ function countButtonClick() {
   menu.innerHTML="";
 
   canvas.style.display="block";
-  $(".game-console").style.display="block";
+  var gameconsole = document.querySelector(".game-console");
+  gameconsole.style.display="block";
   drawGridlines();
   canvas.addEventListener('mousedown', onMouseDown, false);
 
@@ -181,12 +189,6 @@ function updateStateUi(state) {
   }
 }
 
-
-/* Function which takes in a string, and adds it to the game console */
-function addToConsole(thing) {
-  var item= $("<p/>").addClass("console-item").html(thing);
-  $(".game-console").append(item);
-}
 
 
 function updateParticipantsUi(participants) {
