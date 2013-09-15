@@ -174,8 +174,10 @@ function countButtonClick() {
   gameGrid.grid[10][10].terrain="ice";
   gameGrid.draw();
 
-  t = new token('green', player, "Hi", 4, 5);
-  t.draw();
+  allTokens = JSON.parse(tokens);
+  var numTokens = allTokens.length;
+  for (var i=0; i < numTokens; i++)
+    allTokens[i].draw();
   canvas.addEventListener('mousedown', onMouseDown, false);
 }
 
