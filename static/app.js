@@ -108,6 +108,20 @@ function rollDice(numDice, name, is100) {
   addToConsole(numString); 
 }
 
+
+function render()   {
+    // Clear, then draw: Gridlines, game grid, and tokens
+    ctx.clearRect(0, 0, width, height);
+    drawGridlines();
+    gameGrid.draw();
+    var numTokens = allTokens.length;
+    for (var i=0; i < numTokens; i++)
+      allTokens[i].draw();
+
+    return;
+}
+
+
 function onMouseDown(event) {
     var x = event.pageX - canvas.offsetLeft; 
     var y = event.pageY - canvas.offsetTop; 
