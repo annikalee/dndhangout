@@ -17,8 +17,6 @@ var serverPath = '//hangoutdnd.appspot.com/';
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-//canvas.width = 510;
-//canvas.height = 510;
 var width = 510;
 var height = 510;
 var cellSize = 30;
@@ -89,8 +87,15 @@ d100.onload = function() {
 /* Function which takes in a string, and adds it to the game console */
 function addToConsole(thing) {
   console.log(thing);
-  var item= $("<p/>").addClass("console-item").html(thing);
-  $(".game-console").append(item);
+  /* var item= $("<p/>").addClass("console-item").html(thing);
+  $(".game-console").append(item); */
+  var state = gapi.hangout.data.getState()['game-console'];
+  if (state === ' ') {
+     gapi.hangout.data.submitDelta({'game-console': thing + '<br>'});
+  }
+  else {
+    gapi.hangout.data.submitDelta({'game-console': state + '<br>'+ thing});
+  }
 }
 
 function rollDice(numDice, name, is100) {
@@ -142,12 +147,7 @@ function onMouseDown(event) {
     }
 }
 
-// The functions triggered by the buttons on the Hangout App
 function countButtonClick() {
-  // Note that if you click the button several times in succession,
-  // if the state update hasn't gone through, it will submit the same
-  // delta again.  The hangout data state only remembers the most-recent
-  // update.
   var menu = document.querySelector('#Welcome');
   menu.innerHTML="";
 
@@ -156,15 +156,6 @@ function countButtonClick() {
   gameconsole.style.display="block";
   drawGridlines();
   canvas.addEventListener('mousedown', onMouseDown, false);
-
-  // Send update to shared state.
-  // NOTE:  Only ever send strings as values in the key-value pairs
-  gapi.hangout.data.submitDelta({'state': 'Started'});
-}
-
-function resetButtonClick() {
-  console.log('Resetting count to 0');
-  gapi.hangout.data.submitDelta({'count': '0'});
 }
 
 var forbiddenCharacters = /[^a-zA-Z!0-9_\- ]/;
@@ -174,30 +165,10 @@ function setText(element, text) {
       '';
 }
 
-function getMessageClick() {
-  console.log('Requesting message from main.py');
-  var http = new XMLHttpRequest();
-  http.open('GET', serverPath);
-  http.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      var jsonResponse = JSON.parse(http.responseText);
-      console.log(jsonResponse);
-
-      var messageElement = document.getElementById('message');
-      setText(messageElement, jsonResponse['message']);
-    }
-  }
-  http.send();
-}
-
 function updateStateUi(state) {
-  var countElement = document.getElementById('count');
-  var stateCount = state['count'];
-  if (!stateCount) {
-    setText(countElement, 'Probably 0');
-  } else {
-    setText(countElement, stateCount.toString());
-  }
+  var gameconsole = document.getElementById('game-console');
+  var stateconsole = state['game-console'];
+  setText(gameconsole, stateconsole);
 }
 
 
@@ -216,6 +187,8 @@ function init() {
     if (eventObj.isApiReady) {
       console.log('API is ready');
 
+      gapi.hangout.data.setValue('game-console', 'Previous Rolls:');
+
       gapi.hangout.data.onStateChanged.add(function(eventObj) {
         updateStateUi(eventObj.state);
       });
@@ -227,6 +200,7 @@ function init() {
       updateParticipantsUi(gapi.hangout.getParticipants());
 
       gapi.hangout.onApiReady.remove(apiReady);
+
     }
   };
 
@@ -238,7 +212,4 @@ function init() {
 gadgets.util.registerOnLoadHandler(init);
 
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-canvas.width = 600;
-canvas.height = 600;
+

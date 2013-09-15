@@ -31,12 +31,13 @@
 <script src="//hangoutdnd.appspot.com/static/token.js"></script>
 <script src="//hangoutdnd.appspot.com/static/app.js"></script>
 
-<canvas id="myCanvas" width="700" height="100"
+<canvas id="myCanvas" width="700" height="700"
         style="border:1px solid #000000; display: none;">
     No canvas available!
 </canvas>
 
 <div class="game-console">
+<p id="game-console"></p>
 </div>
 
 <div id="Welcome">
