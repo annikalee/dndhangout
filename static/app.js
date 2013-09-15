@@ -34,6 +34,7 @@ function drawGridlines() {
     ctx.stroke();
 }
 
+
 // Uses knowledge of height/width and cellSize
 // If (1,0), that means second row, first column. So, (30, 0)
 function getPositionFromGrid(x, y)  {
@@ -155,6 +156,9 @@ function countButtonClick() {
   var gameconsole = document.querySelector(".game-console");
   gameconsole.style.display="block";
   drawGridlines();
+  var gameGrid = new grid(17, 17);
+  gameGrid.grid[10][10].terrain="ice";
+  gameGrid.draw();
   canvas.addEventListener('mousedown', onMouseDown, false);
 }
 
@@ -210,6 +214,3 @@ function init() {
 }
 
 gadgets.util.registerOnLoadHandler(init);
-
-
-
