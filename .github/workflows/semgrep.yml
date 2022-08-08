@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-20.04
     env:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      SEMGREP_APP_URL: http://localhost:3000
     container:
       image: returntocorp/semgrep
     steps:
